@@ -1,5 +1,6 @@
 package com.rlb.oc.event;
 
+import com.rlb.oc.OrderStatus;
 import com.rlb.oc.event.dto.ProductDto;
 import lombok.Data;
 
@@ -13,6 +14,7 @@ public class OrderCreateEvent {
     private Integer custId;
     private Date orderDate;
     private List<ProductDto> productList = new ArrayList<>();
+    OrderStatus status;
 
     public Integer getId() {
         return id;
