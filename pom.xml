@@ -29,6 +29,7 @@
         <module>rlb-common</module>
         <module>rlb-report</module>
         <module>rlb-notification</module>
+        <module>rlb-test</module>
     </modules>
     <scm>
         <connection/>
@@ -47,11 +48,11 @@
                 <artifactId>spring-boot-starter-web</artifactId>
                 <version>3.4.4</version>
             </dependency>
-           <!-- <dependency>
-                <groupId>org.springframework.kafka</groupId>
-                <artifactId>spring-kafka</artifactId>
-                <version>3.1.4</version>
-            </dependency>-->
+            <!-- <dependency>
+                 <groupId>org.springframework.kafka</groupId>
+                 <artifactId>spring-kafka</artifactId>
+                 <version>3.1.4</version>
+             </dependency>-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-test</artifactId>
@@ -71,17 +72,16 @@
                 <optional>true</optional>
                 <version>3.1.0</version>
             </dependency>
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>1.18.38</version>
-                <scope>provided</scope>
-            </dependency>
         </dependencies>
     </dependencyManagement>
     <!-- Common dependency for all child modules -->
     <dependencies>
-
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.38</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -89,22 +89,17 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
+                    <source>17</source>
+                    <target>17</target>
                     <annotationProcessorPaths>
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
+                            <version>1.18.38</version>
                         </path>
                     </annotationProcessorPaths>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-
-                </configuration>
-            </plugin>
         </plugins>
     </build>
-
 </project>

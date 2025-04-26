@@ -1,4 +1,6 @@
+
 spring:
+  #Kafka Consumer
   kafka:
     bootstrap-servers: localhost:9092
     consumer:
@@ -7,5 +9,12 @@ spring:
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
         spring.json.value.default.type: com.rlb.payload.UserCreatedEvent
+    #Kafka Producer
     producer:
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+#MongoDB
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: rlb

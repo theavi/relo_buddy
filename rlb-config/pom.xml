@@ -8,9 +8,8 @@
         <artifactId>relo_buddy</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-
-    <artifactId>rlb-config</artifactId>
     <packaging>jar</packaging>
+    <artifactId>rlb-config</artifactId>
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>

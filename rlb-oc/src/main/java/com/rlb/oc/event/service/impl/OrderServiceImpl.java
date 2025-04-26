@@ -22,8 +22,10 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public String placeOrder(OrderCreateEvent event) {
+
+        Order order = orderRepository.save(new Order(23, new Date()));
+        event.setId(order.getId());
         event.setStatus(OrderStatus.PLACED);
-        orderRepository.save(new Order(1,new Date()));
         orderPublisher.publishOrderPlaceEvent(event);
         return "Order Created Successfully";
     }
