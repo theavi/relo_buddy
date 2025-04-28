@@ -13,7 +13,7 @@ import java.util.Date;
 
 @Service
 public class OrderServiceImpl implements OrderService {
-
+// make message final
     @Autowired
     private OrderRepository orderRepository;
 
@@ -22,11 +22,14 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public String placeOrder(OrderCreateEvent event) {
-
-        Order order = orderRepository.save(new Order(23, new Date()));
-        event.setId(order.getId());
+        //Create Order from DTO and set order status
+        Order order=new Order();
+        order.setDeliveryAddress("asfsd");
+        Order saveOrder = orderRepository.save(order);
         event.setStatus(OrderStatus.PLACED);
+        event.setId(saveOrder.getId());
         orderPublisher.publishOrderPlaceEvent(event);
+        // publish event order.place.notification.v1
         return "Order Created Successfully";
     }
 }
