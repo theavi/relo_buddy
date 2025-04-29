@@ -1,0 +1,46 @@
+{
+  "orderId": "order456",
+  "origin": {
+    "name": "Warehouse A",
+    "address": "123 Start St"
+  },
+  "destination": {
+    "name": "Customer B",
+    "address": "456 End Ave"
+  },
+  "status": "IN_TRANSIT",
+  "packages": [
+    {
+      "packageId": "pkg001",
+      "weight": 2.5,
+      "dimensions": {
+        "length": 10,
+        "width": 5,
+        "height": 3
+      }
+    },
+    {
+      "packageId": "pkg001",
+      "weight": 2.5,
+      "dimensions": {
+        "length": 10,
+        "width": 5,
+        "height": 3
+      }
+    }
+  ],
+  "tracking": [
+    {
+      "location": "Hub A",
+      "timestamp": "2025-04-28T08:30:00Z",
+      "status": "ARRIVED"
+    },
+    {
+      "location": "Hub B",
+      "timestamp": "2025-04-29T10:00:00Z",
+      "status": "DEPARTED"
+    }
+  ],
+  "createdAt": "2025-04-28T08:00:00Z",
+  "updatedAt": "2025-04-29T10:00:00Z"
+}
