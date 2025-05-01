@@ -20,3 +20,4 @@ public class OrderCreateEvent {
     private List<ProductDto> productList = new ArrayList<>();
     private OrderStatus status;
 }
+

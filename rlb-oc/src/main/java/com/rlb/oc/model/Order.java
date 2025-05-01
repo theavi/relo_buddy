@@ -13,8 +13,9 @@ import java.util.UUID;
 @AllArgsConstructor
 public class Order {
     @Id
-    private String id;// ObjectId-- String
+    private String id;
     private Date orderDate;
+    private String pickupAddress;
     private String deliveryAddress;
 
     public Order() {

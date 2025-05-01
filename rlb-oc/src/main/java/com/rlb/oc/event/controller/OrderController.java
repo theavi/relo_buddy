@@ -32,18 +32,7 @@ public class OrderController {
 
     @PostMapping("/order")
     public ResponseEntity<String> placeOrder(@RequestBody OrderCreateEvent event) {
-       // String result = orderService.placeOrder(event);
-        Role admin=new Role();
-        admin.setName("Admin");
-
-        Role qa=new Role();
-        qa.setName("QA");
-
-        User user=new User();
-        user.setName("Avinashs");
-        user.setRoles(Arrays.asList(admin,qa));
-
-        userRepository.save(user);
+       String result = orderService.placeOrder(event);
         return new ResponseEntity<String>("result", HttpStatus.CREATED);
     }
 }
