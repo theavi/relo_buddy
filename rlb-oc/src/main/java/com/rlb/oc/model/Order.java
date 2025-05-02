@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-@Document(collation = "order")
+@Document(collection = "order")
 @Data
 @AllArgsConstructor
 public class Order {
