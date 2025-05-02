@@ -14,7 +14,7 @@ public class OrderMapper {
 
     public static Order toEntity(OrderCreateEvent dto){
         Order order = new Order();
-        order.setId(dto.getId());
+        //order.setId(dto.getId());
         order.setCustId(dto.getCustId());
         order.setOrderDate(dto.getOrderDate());
         order.setPickupAddress(dto.getPickupAddress());
@@ -23,7 +23,7 @@ public class OrderMapper {
         order.setStatus(dto.getStatus());
         return order;
     }
-    public static OrderCreateEvent toEntity(Order order){
+    public static OrderCreateEvent toDto(Order order){
         OrderCreateEvent orderCreateEvent = new OrderCreateEvent();
         orderCreateEvent.setId(order.getId());
         orderCreateEvent.setCustId(order.getCustId());
