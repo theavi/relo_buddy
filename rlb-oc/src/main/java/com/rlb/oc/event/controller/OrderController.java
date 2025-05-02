@@ -1,6 +1,7 @@
 package com.rlb.oc.event.controller;
 
 import com.rlb.oc.event.OrderCreateEvent;
+import com.rlb.oc.event.dto.OrderCreateDto;
 import com.rlb.oc.event.service.OrderService;
 import com.rlb.oc.model.Role;
 import com.rlb.oc.model.User;
@@ -31,8 +32,8 @@ public class OrderController {
 
 
     @PostMapping("/order")
-    public ResponseEntity<String> placeOrder(@RequestBody OrderCreateEvent event) {
-       String result = orderService.placeOrder(event);
+    public ResponseEntity<String> placeOrder(@RequestBody OrderCreateDto orderCreateDto) {
+       String result = orderService.placeOrder(orderCreateDto);
         return new ResponseEntity<String>("result", HttpStatus.CREATED);
     }
 }
