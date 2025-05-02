@@ -1,4 +1,4 @@
-package com.rlb.oc.event.dto;
+package com.rlb.oc.dto;
 
 import lombok.Data;
 

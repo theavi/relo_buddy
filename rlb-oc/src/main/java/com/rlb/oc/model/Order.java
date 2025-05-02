@@ -1,7 +1,7 @@
 package com.rlb.oc.model;
 
 import com.rlb.oc.OrderStatus;
-import com.rlb.oc.event.dto.ProductDto;
+import com.rlb.oc.dto.ProductDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.data.annotation.Id;

@@ -2,7 +2,7 @@ package com.rlb.oc.mapper;
 
 import com.rlb.oc.OrderStatus;
 import com.rlb.oc.event.OrderCreateEvent;
-import com.rlb.oc.event.dto.OrderCreateDto;
+import com.rlb.oc.dto.OrderCreateDto;
 import com.rlb.oc.model.Order;
 
 public class OrderMapper {

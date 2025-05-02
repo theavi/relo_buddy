@@ -1,4 +1,4 @@
-package com.rlb.oc.event.kafka.producer;
+package com.rlb.oc.kafka.producer;
 
 import com.rlb.oc.event.OrderCreateEvent;
 import org.apache.kafka.clients.producer.ProducerRecord;

@@ -1,10 +1,7 @@
-package com.rlb.oc.event.controller;
+package com.rlb.oc.controller;
 
-import com.rlb.oc.event.OrderCreateEvent;
-import com.rlb.oc.event.dto.OrderCreateDto;
-import com.rlb.oc.event.service.OrderService;
-import com.rlb.oc.model.Role;
-import com.rlb.oc.model.User;
+import com.rlb.oc.dto.OrderCreateDto;
+import com.rlb.oc.service.OrderService;
 import com.rlb.oc.repository.RoleRepository;
 import com.rlb.oc.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Arrays;
 
 @RestController
 @RequestMapping("/oc")
