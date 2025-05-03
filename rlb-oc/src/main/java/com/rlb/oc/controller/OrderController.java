@@ -1,7 +1,7 @@
-package com.rlb.oc.event.controller;
+package com.rlb.oc.controller;
 
-import com.rlb.oc.event.OrderCreateEvent;
-import com.rlb.oc.event.service.OrderService;
+import com.rlb.oc.OrderCreateEvent;
+import com.rlb.oc.service.OrderService;
 import com.rlb.oc.model.Role;
 import com.rlb.oc.model.User;
 import com.rlb.oc.repository.RoleRepository;

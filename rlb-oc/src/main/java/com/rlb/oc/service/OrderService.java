@@ -1,6 +1,6 @@
-package com.rlb.oc.event.service;
+package com.rlb.oc.service;
 
-import com.rlb.oc.event.OrderCreateEvent;
+import com.rlb.oc.OrderCreateEvent;
 
 public interface OrderService {
 

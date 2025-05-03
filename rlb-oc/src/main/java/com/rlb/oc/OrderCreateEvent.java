@@ -1,7 +1,6 @@
-package com.rlb.oc.event;
+package com.rlb.oc;
 
-import com.rlb.oc.OrderStatus;
-import com.rlb.oc.event.dto.ProductDto;
+import com.rlb.oc.dto.ProductDto;
 import lombok.*;
 
 import java.util.ArrayList;
