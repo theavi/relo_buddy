@@ -1,4 +1,4 @@
-package com.rlb.model;
+package com.core.model;
 
 import jakarta.persistence.Entity;
 

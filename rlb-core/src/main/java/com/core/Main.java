@@ -1,4 +1,4 @@
-package com.rlb;
+package com.core;
 
 public class Main {
     public static void main(String[] args) {
