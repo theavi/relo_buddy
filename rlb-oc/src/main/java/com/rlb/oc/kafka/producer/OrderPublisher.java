@@ -1,6 +1,6 @@
 package com.rlb.oc.kafka.producer;
 
-import com.rlb.oc.OrderCreateEvent;
+import com.rlb.oc.event.OrderCreateEvent;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
