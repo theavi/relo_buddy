@@ -21,7 +21,7 @@ import java.util.UUID;
 
 @Service
 public class OrderServiceImpl implements OrderService {
-// make message final
+
     @Autowired
     private OrderRepository orderRepository;
 
@@ -42,6 +42,7 @@ public class OrderServiceImpl implements OrderService {
     public ResponseEntity<String> getOrderStatus(String id) {
             Optional<Order> order = orderRepository.findById(id);
             if(order.isEmpty()){
+                logger.error("OrderServiceImpl - getOrderStatus - Order not found for orderId : {}", id);
                 throw new RecordNotFound("Order not found");
             }
             String status = order.get().getStatus().toString();
