@@ -9,5 +9,5 @@ spring:
   dialect:
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQlDialect
+        dialect: org.hibernate.dialect.MySQLDialect
         ddl-auto: update
