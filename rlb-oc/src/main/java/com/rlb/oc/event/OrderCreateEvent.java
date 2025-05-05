@@ -1,7 +1,7 @@
 package com.rlb.oc.event;
 
 import com.rlb.oc.OrderStatus;
-import com.rlb.oc.event.dto.ProductDto;
+import com.rlb.oc.dto.ProductDto;
 import com.rlb.oc.model.Location;
 import lombok.*;
 
