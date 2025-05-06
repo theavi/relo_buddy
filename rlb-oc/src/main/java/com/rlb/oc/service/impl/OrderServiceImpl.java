@@ -33,7 +33,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public String placeOrder(OrderCreateDto dto) {
         Order savedOrder = orderRepository.save(OrderMapper.toEntity(dto));
-        OrderCreateEvent event = OrderMapper.toEvent(savedOrder);
+        OrderCreateEvent event = OrderMapper.toOrderCreateEvent(savedOrder);
         orderPublisher.publishOrderPlaceEvent(event);
         return "Order Created Successfully";
     }
@@ -47,5 +47,19 @@ public class OrderServiceImpl implements OrderService {
             }
             String status = order.get().getStatus().toString();
             return new ResponseEntity<>(status, HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<String> updateOrder(OrderCreateDto orderDto) {
+        Optional<Order> orderFromDb = orderRepository.findById(orderDto.getId());
+        if(orderFromDb.isEmpty()){
+            logger.error("OrderServiceImpl - getOrderStatus - Order not found for orderId : {}", orderDto.getId());
+            throw new RecordNotFound("Order not found");
+        }
+        Order order = OrderMapper.toEntity(orderDto);
+        order.setId(orderDto.getId());
+        Order updatedOrder = orderRepository.save(order);
+        orderPublisher.publishOrderUpdateEvent(OrderMapper.toOrderUpdateEvent(updatedOrder));
+        return new ResponseEntity<>("Order updated successfully", HttpStatus.CREATED);
     }
 }

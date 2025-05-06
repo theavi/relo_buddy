@@ -12,4 +12,7 @@ public class KafkaTopicConfig {
     NewTopic userCreatedTopic(){
         return TopicBuilder.name("order.created.v1").partitions(3).build();
     }
+
+    @Bean
+    NewTopic orderUpdatedTopic(){ return TopicBuilder.name("order.updated.v1").partitions(3).build();}
 }

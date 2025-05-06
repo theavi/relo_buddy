@@ -9,4 +9,6 @@ public interface OrderService {
     public abstract String placeOrder(OrderCreateDto dto);
 
     public ResponseEntity<String> getOrderStatus(String id);
+
+    ResponseEntity<String> updateOrder(OrderCreateDto orderDto);
 }

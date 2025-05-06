@@ -36,4 +36,9 @@ public class OrderController {
     public ResponseEntity<String> getOrderStatus(@PathVariable String id){
         return orderService.getOrderStatus(id);
     }
+
+    @PutMapping("/updateOrder")
+    public ResponseEntity<String> updateOrder(@RequestBody OrderCreateDto orderDto){
+        return orderService.updateOrder(orderDto);
+    }
 }
