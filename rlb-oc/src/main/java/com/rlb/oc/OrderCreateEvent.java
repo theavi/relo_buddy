@@ -1,11 +1,11 @@
-package com.rlb.oc.event;
+package com.rlb.oc;
 
-import com.rlb.oc.OrderStatus;
 import com.rlb.oc.dto.ProductDto;
-import com.rlb.oc.model.Location;
 import lombok.*;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,9 +15,6 @@ public class OrderCreateEvent {
     private String id;
     private Integer custId;
     private Date orderDate;
-    private Location pickupAddress;
-    private Location deliveryAddress;
     private List<ProductDto> productList = new ArrayList<>();
     private OrderStatus status;
 }
-

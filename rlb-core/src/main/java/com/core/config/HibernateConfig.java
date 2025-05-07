@@ -31,7 +31,7 @@ public class HibernateConfig {
     public LocalSessionFactoryBean sessionFactoryBean() {
         LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
         factoryBean.setDataSource(dataSource());
-        factoryBean.setPackagesToScan("com.rlb.model");
+        factoryBean.setPackagesToScan("com.core.model");
 
         Properties properties = new Properties();
         properties.put("hibernate.dialect", env.getProperty("spring.dialect.properties.hibernate.dialect"));
