@@ -30,6 +30,7 @@
         <module>rlb-report</module>
         <module>rlb-notification</module>
         <module>rlb-test</module>
+        <module>eureka-server</module>
     </modules>
     <scm>
         <connection/>

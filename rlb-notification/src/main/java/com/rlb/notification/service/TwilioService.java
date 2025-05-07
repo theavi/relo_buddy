@@ -7,7 +7,7 @@ import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-@Service
+//@Service
 public class TwilioService {
 
     @Value("{twilio.accountSid}")
@@ -23,7 +23,7 @@ public class TwilioService {
     }
 
     public String sendWhatsAppMessage(String to, String payload) {
-        Message message = Message.creator(new com.twilio.type.PhoneNumber("+917507571993"),
+        Message message = Message.creator(new com.twilio.type.PhoneNumber("+919063237318"),
                         new com.twilio.type.PhoneNumber("+18563863439"),
                         "Where's Aniket?")
                 .create();
