@@ -5,6 +5,7 @@ import com.rlb.oc.event.OrderCreateEvent;
 import com.rlb.oc.dto.OrderCreateDto;
 import com.rlb.oc.exception.RecordNotFound;
 import com.rlb.oc.kafka.producer.OrderPublisher;
+import com.rlb.oc.kafka.producer.OrderUpdatePublisher;
 import com.rlb.oc.service.OrderService;
 import com.rlb.oc.mapper.OrderMapper;
 import com.rlb.oc.model.Order;
@@ -27,6 +28,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private OrderPublisher orderPublisher;
+
+    @Autowired
+    private OrderUpdatePublisher orderUpdatePublisher;
 
     private static final Logger logger = LoggerFactory.getLogger(OrderService.class);
 
@@ -56,10 +60,9 @@ public class OrderServiceImpl implements OrderService {
             logger.error("OrderServiceImpl - getOrderStatus - Order not found for orderId : {}", orderDto.getId());
             throw new RecordNotFound("Order not found");
         }
-        Order order = OrderMapper.toEntity(orderDto);
-        order.setId(orderDto.getId());
-        Order updatedOrder = orderRepository.save(order);
-        orderPublisher.publishOrderUpdateEvent(OrderMapper.toOrderUpdateEvent(updatedOrder));
+        orderFromDb.get().setDeliveryAddress(orderDto.getDeliveryAddress());
+        Order updatedOrder = orderRepository.save(orderFromDb.get());
+        orderUpdatePublisher.publishOrderUpdateEvent(OrderMapper.toOrderUpdateEvent(updatedOrder));
         return new ResponseEntity<>("Order updated successfully", HttpStatus.CREATED);
     }
 }
