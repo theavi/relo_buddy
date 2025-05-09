@@ -34,8 +34,9 @@ public class HibernateConfig {
         factoryBean.setPackagesToScan("com.core.model");
 
         Properties properties = new Properties();
-        properties.put("hibernate.dialect", env.getProperty("spring.dialect.properties.hibernate.dialect"));
-        properties.put("hibernate.hbm2ddl.auto", env.getProperty("spring.dialect.properties.hibernate.ddl-auto"));
+        properties.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+        properties.put("hibernate.hbm2ddl.auto", "update");
+        properties.put("hibernate.show_sql", "true");
 
         factoryBean.setHibernateProperties(properties);
         return factoryBean;
