@@ -1,6 +1,6 @@
 package com.core.dao;
 
-import com.core.entity.Role;
+import com.core.model.Role;
 
 public interface RoleDao {
     Role create(Role role);

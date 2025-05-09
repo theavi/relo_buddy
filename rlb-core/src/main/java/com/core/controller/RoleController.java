@@ -1,6 +1,6 @@
 package com.core.controller;
 
-import com.core.entity.Role;
+import com.core.model.Role;
 import com.core.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

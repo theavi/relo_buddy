@@ -1,7 +1,7 @@
 package com.core.dao.impl;
 
 import com.core.dao.RoleDao;
-import com.core.entity.Role;
+import com.core.model.Role;
 import jakarta.transaction.Transactional;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -20,7 +20,7 @@ public class RoleDaoImpl implements RoleDao {
     public Role create(Role role) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        session.persist(role);  // Hibernate save
+        session.merge(role);  // Hibernate save
         transaction.commit();
         session.close();
         return role;
