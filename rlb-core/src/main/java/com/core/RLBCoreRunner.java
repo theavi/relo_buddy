@@ -13,7 +13,6 @@ public class RLBCoreRunner implements CommandLineRunner {
     private UserDao userDao;
     @Override
     public void run(String... args) throws Exception {
-        System.out.println(args[0]);
         userDao.save(new User(1));
     }
 }
