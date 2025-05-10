@@ -7,20 +7,27 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import java.text.MessageFormat;
+
 @Component
 public class TwilioRunner implements CommandLineRunner {
 
-    //@Autowired
-   // private TwilioService twilioService;
+    @Autowired
+    private TwilioService twilioService;
 
+    //private String order_place_msg;
+    @Value("${order.placed}")
     private String order_place_msg;
-    @Value("${ORDER_CREATED_MSG}")
-    private  String order_placed_msg;
+
 
     @Override
     @Order(50)
     public void run(String... args) throws Exception {
-        System.out.println(order_placed_msg);
-       // twilioService.sendWhatsAppMessage("+917507571993",order_place_msg);
+        System.out.println("Send message->      ->    ->");
+        String date = "May 5, 2025";
+        String time = "2:00 PM";
+        String msg = MessageFormat.format(order_place_msg, date, time);
+        twilioService.sendWhatsAppMessage("+917507571993", order_place_msg);
+       // twilioService.sendWhatsAppMessage("+919063237318", msg);
     }
 }

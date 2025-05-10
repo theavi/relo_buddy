@@ -1,11 +1,16 @@
-spring:
-  profiles:
-    active: uat
+#spring:
+#  profiles:
+#    active: uat
 
 twilio:
   accountSid: AC9dae9374e459593c7de4868c04b77284
   authToken: edd4949c4724dcb4b104996d61e317bc
-  phoneNumber: +18563863439
+  #WhatsAPP Msg
+  phoneNumber: +14155238886
+  #Text Msg
+  #phoneNumber: +18563863439
 
+order:
+  placed: "Thank you for your order. Your delivery is scheduled for {0} at {1}. If you need to change it, please reply back and let us know."
 
 ORDER_CREATED_MSG: "Your Order successfully placed on DEV"
