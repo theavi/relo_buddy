@@ -1,10 +1,11 @@
     package com.core.model;
 
-    import jakarta.persistence.Entity;
-    import jakarta.persistence.GeneratedValue;
-    import jakarta.persistence.GenerationType;
-    import jakarta.persistence.Id;
+    import com.fasterxml.jackson.annotation.JsonIgnore;
+    import jakarta.persistence.*;
     import lombok.Data;
+
+    import java.util.HashSet;
+    import java.util.Set;
 
     @Data
     @Entity
@@ -13,4 +14,8 @@
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Integer id;
         private String name;
+
+        @ManyToMany(mappedBy = "roles")
+        @JsonIgnore
+        private Set<User> users = new HashSet<>();
     }

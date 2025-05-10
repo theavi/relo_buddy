@@ -2,6 +2,7 @@ package com.core.dao.impl;
 
 import com.core.dao.RoleDao;
 import com.core.model.Role;
+import com.core.model.User;
 import jakarta.transaction.Transactional;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -32,7 +33,11 @@ public class RoleDaoImpl implements RoleDao {
         Transaction transaction = session.beginTransaction();
         Role role = session.get(Role.class, id);  // Retrieve the Role by id
         if (role != null) {
-            session.delete(role);  // Hibernate delete
+            for (User user : role.getUsers()) {
+                user.getRoles().remove(role); // Break the link from user's side
+                session.persist(user); // Persist the update
+            }  // Hibernate delete
+            session.delete(role);
         }
         transaction.commit();
         session.close();
