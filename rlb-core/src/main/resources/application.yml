@@ -6,3 +6,9 @@ spring:
     driverClassName: com.mysql.cj.jdbc.Driver
     username: root
     password: admin
+    initialization-mode: always
+
+  sql:
+    init:
+      mode: always    # Ensures data.sql runs
+      continue-on-error: true

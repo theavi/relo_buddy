@@ -3,8 +3,8 @@
 #    active: uat
 
 twilio:
-  accountSid: AC9dae9374e459593c7de4868c04b77284
-  authToken: edd4949c4724dcb4b104996d61e317bc
+  accountSid: AC3051284f3dbb6c59c42e9563715e2f35
+  authToken: cf981b6576c2b7ee4447a5aba74dacf5
   #WhatsAPP Msg
   phoneNumber: +14155238886
   #Text Msg
