@@ -5,9 +5,11 @@ spring:
     consumer:
       group-id: rlbGroup
       auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
         spring.json.value.default.type: com.rlb.payload.UserCreatedEvent
+        spring.json.trusted.packages: "com.rlb.oc.event"
     #Kafka Producer
     producer:
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer

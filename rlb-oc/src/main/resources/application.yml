@@ -1,4 +1,5 @@
-
+server:
+  port: 8081
 spring:
   #Kafka Consumer
   kafka:
@@ -8,7 +9,7 @@ spring:
       auto-offset-reset: earliest
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
-        spring.json.value.default.type: com.rlb.payload.UserCreatedEvent
+        spring.json.value.default.type: com.rlb.payload.OrderCreatedEvent
     #Kafka Producer
     producer:
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
@@ -18,3 +19,4 @@ spring:
       host: localhost
       port: 27017
       database: rlb
+
