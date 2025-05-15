@@ -14,3 +14,9 @@ order:
   placed: "Thank you for your order. Your delivery is scheduled for {0} at {1}. If you need to change it, please reply back and let us know."
 
 ORDER_CREATED_MSG: "Your Order successfully placed on DEV"
+
+#Register Component to R&D
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761
