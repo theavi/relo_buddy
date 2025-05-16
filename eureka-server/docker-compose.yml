@@ -1,8 +1,0 @@
-version: "3"
-services:
-  eureka-server:
-    container_name: eureka-server
-    image: eureka-server:0.0.1
-    ports:
-      - "8761:8761"
-#docker run -d eureka-server:0.0.1 -p8761:8761 --name=eureka-server

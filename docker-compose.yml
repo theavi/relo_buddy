@@ -1,0 +1,24 @@
+version: "3"
+services:
+  eureka-server:
+    container_name: eureka-server
+    image: eureka-server:0.0.1
+    ports:
+      - "8761:8761"
+    networks:
+      - rlb-net
+#docker run -d eureka-server:0.0.1 -p8761:8761 --name=eureka-server
+#RLB-Notification
+  rlb-notification:
+    container_name: rlb-notification
+    image: rlb-notification:0.0.1
+    ports:
+      - "6060:6060"
+    depends_on:
+      - eureka-server
+    networks:
+      - rlb-net
+
+networks:
+  rlb-net:
+    driver: bridge
