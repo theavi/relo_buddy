@@ -8,8 +8,8 @@ spring:
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
-        spring.json.value.default.type: com.rlb.payload.UserCreatedEvent
-        spring.json.trusted.packages: "com.rlb.oc.event"
+        spring.json.value.default.type: com.rlb.oc.event.OrderCreateEvent
+        spring.json.trusted.packages: "*"
     #Kafka Producer
     producer:
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
@@ -19,3 +19,8 @@ spring:
       host: localhost
       port: 27017
       database: rlb
+
+server:
+  port: 8082
+
+
