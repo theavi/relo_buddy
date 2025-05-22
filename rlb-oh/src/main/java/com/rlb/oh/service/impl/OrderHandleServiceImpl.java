@@ -6,7 +6,9 @@ import com.rlb.oh.service.OrderHandleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
+@Service
 public class OrderHandleServiceImpl implements OrderHandleService {
 
     private static final Logger logger = LoggerFactory.getLogger(OrderHandleServiceImpl.class);

@@ -13,10 +13,7 @@ spring:
     #Kafka Producer
     producer:
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-    #Kafka Topics
-    topics:
-      orderCreated: order.created.v1
-      orderUpdated: order.updated.v1
+
   #MongoDB
   data:
     mongodb:
