@@ -1,9 +1,26 @@
+server:
+  port: 6060
+spring:
+  application:
+    name: rlb-notification
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka-server:8761/eureka/
+  instance:
+    instance-id: ${spring.application.name}:${random.value}
+
+
 twilio:
   accountSid: AC9dae9374e459593c7de4868c04b77284
   authToken: edd4949c4724dcb4b104996d61e317bc
-  #text
-  phoneNumber: +18563863439
-  #WhatsAppp
-  #phoneNumber: +14155238886
+  #WhatsAPP Msg
+  phoneNumber: +14155238886
+  #Text Msg
+  #phoneNumber: +18563863439
 
-ORDER_CREATED_MSG: "Your Order successfully placed on PROD"
+order:
+  placed: "Thank you for your order. Your delivery is scheduled for {0} at {1}. If you need to change it, please reply back and let us know."
+
+

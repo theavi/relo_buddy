@@ -1,6 +1,6 @@
-#spring:
-#  profiles:
-#    active: uat
+spring:
+  application:
+    name: rlb-notification
 
 twilio:
   accountSid: AC9dae9374e459593c7de4868c04b77284
@@ -19,5 +19,4 @@ ORDER_CREATED_MSG: "Your Order successfully placed on DEV"
 eureka:
   client:
     service-url:
-      #defaultZone: http://localhost:8761/eureka #Local
-      defaultZone: http://eureka-server:8761/eureka #Docker
+      defaultZone: http://localhost:8761/eureka #Local

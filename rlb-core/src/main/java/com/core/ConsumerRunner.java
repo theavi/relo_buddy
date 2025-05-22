@@ -1,19 +1,42 @@
 package com.core;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
+
 @Component
 public class ConsumerRunner implements ApplicationRunner {
+
+    @Autowired
+    private DiscoveryClient discoveryClient;
+
+    @Autowired
+    private LoadBalancerClient loadBalancerClient;
+
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
-        RestTemplate restTemplate=new RestTemplate();
-      ResponseEntity<String> response= restTemplate.getForEntity("http://localhost:9092/hello",String.class);
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<String> response = restTemplate.getForEntity("http://localhost:9092/hello", String.class);
         //System.out.println(String.format("RLB Common Response : {} and HTTP Status is : {}",response.getBody(),response.getStatusCode()));
-        System.out.println("Response :  "+response.getBody());
+        System.out.println("Response :  " + response.getBody());
+
+        List<ServiceInstance> instances = discoveryClient.getInstances("RLB-COMMON");
+        ResponseEntity<String> discoveryClientResponse = restTemplate.getForEntity(instances.get(0).getUri() + "/hello", String.class);
+        System.out.println("Response from Discovery Client:  " + discoveryClientResponse.getBody());
+
+        for (int count = 0; count < 10; count++) {
+            ServiceInstance instance = loadBalancerClient.choose("RLB-COMMON");
+            ResponseEntity<String> loadbalancerclientresponse = restTemplate.getForEntity(instance.getUri() + "/hello", String.class);
+            System.out.println("Response from Load balancer Client:  " + loadbalancerclientresponse.getBody());
+        }
     }
 }
