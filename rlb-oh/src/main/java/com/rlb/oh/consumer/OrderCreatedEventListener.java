@@ -19,6 +19,9 @@ public class OrderCreatedEventListener {
     @KafkaListener(topics = "order.created.v1", groupId = "rlbGroup")
     public void consume(OrderCreateEvent event){
         logger.info("OrderCreatedEventListener - consume: Event received : {}", event);
+        if(event.getId()==null){
+            throw new RuntimeException("Exception during processing..");
+        }
         orderHandleService.handleOrder(event);
     }
 
