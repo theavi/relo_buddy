@@ -1,5 +1,6 @@
 package com.core;
 
+import com.core.client.ProducerFeignClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -19,7 +20,10 @@ public class ConsumerRunner implements ApplicationRunner {
     private DiscoveryClient discoveryClient;
 
     @Autowired
-    private LoadBalancerClient loadBalancerClient;
+    private LoadBalancerClient ribbonClient;
+
+    @Autowired
+    private ProducerFeignClient feignClient;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -33,10 +37,15 @@ public class ConsumerRunner implements ApplicationRunner {
         ResponseEntity<String> discoveryClientResponse = restTemplate.getForEntity(instances.get(0).getUri() + "/hello", String.class);
         System.out.println("Response from Discovery Client:  " + discoveryClientResponse.getBody());
 
+        //Ribbon
         for (int count = 0; count < 10; count++) {
-            ServiceInstance instance = loadBalancerClient.choose("RLB-COMMON");
+            ServiceInstance instance = ribbonClient.choose("RLB-COMMON");
             ResponseEntity<String> loadbalancerclientresponse = restTemplate.getForEntity(instance.getUri() + "/hello", String.class);
             System.out.println("Response from Load balancer Client:  " + loadbalancerclientresponse.getBody());
         }
+
+        ResponseEntity<String> feignResponse = feignClient.hello();
+        System.out.println(feignResponse.getBody());
+
     }
 }
