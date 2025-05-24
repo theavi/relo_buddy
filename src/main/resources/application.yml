@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: relocation_buddy
+#Datasource
+  datasource:
+    url: jdbc:mysql://localhost:3306/rlb?createDatabaseIfNotExist=true
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root

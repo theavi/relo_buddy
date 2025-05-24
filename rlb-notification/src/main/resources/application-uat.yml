@@ -1,0 +1,10 @@
+twilio:
+  accountSid: AC9dae9374e459593c7de4868c04b77284
+  authToken: edd4949c4724dcb4b104996d61e317bc
+  #text
+  #phoneNumber: +18563863439
+  #WhatsAppp
+  phoneNumber: +14155238886
+
+
+ORDER_CREATED_MSG: "Your Order successfully placed on UAT"
