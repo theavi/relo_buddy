@@ -3,7 +3,7 @@ server:
 spring:
   #Kafka Consumer
   kafka:
-    bootstrap-servers: kafka:9092
+    bootstrap-servers: localhost:9092
     consumer:
       group-id: rlbGroup
       auto-offset-reset: earliest
@@ -20,7 +20,10 @@ spring:
 #MongoDB
   data:
     mongodb:
-      host: mongodb
+      host: localhost
       port: 27017
       database: rlb
 
+
+  main:
+    allow-bean-definition-overriding=true:
