@@ -1,3 +1,4 @@
 FROM openjdk:17-alpine
-COPY target/*.jar eureka-server.jar
-ENTRYPOINT ["java", "-jar", "eureka-server.jar"]
+RUN apk add --no-cache curl
+COPY target/eureka-server-0.0.1-SNAPSHOT.jar app.jar
+ENTRYPOINT ["java", "-jar", "app.jar"]
