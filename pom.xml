@@ -88,12 +88,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-autoconfigure</artifactId>
         </dependency>
-        <dependency>
+       <!-- <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-netflix-eureka-server</artifactId>
             <version>4.1.0</version>
             <scope>compile</scope>
-        </dependency>
+        </dependency>-->
     </dependencies>
     <build>
         <plugins>

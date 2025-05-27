@@ -34,5 +34,3 @@ eureka:
       database: rlb
 
 
-  main:
-    allow-bean-definition-overriding=true:
