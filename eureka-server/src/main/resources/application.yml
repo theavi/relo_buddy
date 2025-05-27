@@ -9,3 +9,17 @@ eureka:
 
 server:
   port: 8761
+
+#root logging
+logging:
+  level:
+    #root: INFO
+
+   # org:
+   #springframework:
+   #   web: ERROR
+
+    com:
+      rlb: ERROR
+  file:
+    name: D:\eureka.log

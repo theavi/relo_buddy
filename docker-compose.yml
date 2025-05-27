@@ -1,21 +1,6 @@
 version: "2.4"
 services:
-  #Eureka server
-  eureka-server:
-    container_name: eureka-server
-    build:
-      context: ./eureka-server
-    image: eureka-server:0.0.1
-    ports:
-      - "8761:8761"
-    healthcheck:
-      test: [ "CMD", "curl", "-f", "http://localhost:8761" ]
-      interval: 10s
-      retries: 5
-      start_period: 1200s
-    networks:
-      - rlb-net
-
+  #Mongo
   mongodb:
     container_name: mongodb
     image: mongo:latest
@@ -25,14 +10,11 @@ services:
       test: [ "CMD", "mongosh", "--quiet", "--eval", "db.runCommand({ ping: 1 }).ok" ]
       interval: 10s
       retries: 5
-      start_period: 1200s
+      start_period: 60s
     restart: on-failure
-    depends_on:
-      eureka-server:
-        condition: service_healthy
     networks:
-    - rlb-net
-
+      - rlb-net
+  #Zookeeper
   zookeeper:
     container_name: zookeeper
     image: confluentinc/cp-zookeeper:latest
@@ -46,15 +28,14 @@ services:
       mongodb:
         condition: service_healthy
     healthcheck:
-      test: ["CMD", "bash", "-c", "echo ruok | nc localhost 2181"]
+      test: [ "CMD", "bash", "-c", "echo ruok | nc localhost 2181" ]
       interval: 10s
       timeout: 5s
       retries: 10
-      start_period: 1200s
+      start_period: 60s
     networks:
       - rlb-net
-
-
+  #Kafka Server
   kafka:
     container_name: kafka
     image: confluentinc/cp-kafka:latest
@@ -74,10 +55,32 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-      start_period: 1200s
+      start_period: 60s
     networks:
       - rlb-net
 
+  #Eureka server
+  eureka-server:
+    container_name: eureka-server
+    build:
+      context: ./eureka-server
+    image: eureka-server:0.0.1
+    ports:
+      - "8761:8761"
+    environment:
+      SPRING_APPLICATION_NAME: eureka-server
+      SPRING_PROFILES_ACTIVE: prod
+    restart: on-failure
+    depends_on:
+      kafka:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8761 || exit 1"]
+      interval: 10s
+      retries: 5
+      start_period: 120s
+    networks:
+      - rlb-net
   #RLB-Notification
   rlb-notification:
     container_name: rlb-notification
@@ -89,13 +92,10 @@ services:
     depends_on:
       eureka-server:
         condition: service_healthy
-      kafka:
-        condition: service_healthy
     environment:
       SPRING_APPLICATION_NAME: rlb-notification
       SPRING_PROFILES_ACTIVE: prod
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka
-
     restart: on-failure
     networks:
       - rlb-net
@@ -109,8 +109,6 @@ services:
       - "6061:6061"
     depends_on:
       eureka-server:
-        condition: service_healthy
-      kafka:
         condition: service_healthy
     environment:
       SPRING_APPLICATION_NAME: rlb-oc
