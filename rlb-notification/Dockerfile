@@ -1,10 +1,9 @@
-FROM openjdk:17-jdk-alpine
+FROM openjdk:17-alpine
 
-WORKDIR /app
-COPY target/*.jar rlb-notification.jar
-COPY wait-for-it.sh wait-for-it.sh
-RUN chmod +x wait-for-it.sh
+# install curl for healthcheck
+RUN apk add --no-cache curl
 
-ENTRYPOINT ["./wait-for-it.sh", "eureka-server", "8761", "--", "java", "-jar", "rlb-notification.jar"]
+ARG JAR_FILE=target/rlb-notification-0.0.1-SNAPSHOT.jar
+COPY ${JAR_FILE} app.jar
 
-
+ENTRYPOINT ["java", "-jar", "app.jar"]
