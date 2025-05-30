@@ -1,20 +1,16 @@
 package com.rlb.oc.controller;
 
-import com.rlb.oc.OrderCreateEvent;
+import com.rlb.oc.OrderStatus;
+import com.rlb.oc.dto.OrderCreateDto;
 import com.rlb.oc.service.OrderService;
-import com.rlb.oc.model.Role;
-import com.rlb.oc.model.User;
 import com.rlb.oc.repository.RoleRepository;
 import com.rlb.oc.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/oc")
@@ -31,19 +27,18 @@ public class OrderController {
 
 
     @PostMapping("/order")
-    public ResponseEntity<String> placeOrder(@RequestBody OrderCreateEvent event) {
-       // String result = orderService.placeOrder(event);
-        Role admin=new Role();
-        admin.setName("Admin");
-
-        Role qa=new Role();
-        qa.setName("QA");
-
-        User user=new User();
-        user.setName("Avinashs");
-        user.setRoles(Arrays.asList(admin,qa));
-
-        userRepository.save(user);
+    public ResponseEntity<String> placeOrder(@RequestBody OrderCreateDto orderCreateDto) {
+       String result = orderService.placeOrder(orderCreateDto);
         return new ResponseEntity<String>("result", HttpStatus.CREATED);
+    }
+
+    @GetMapping("/getOrderStatus/{id}")
+    public ResponseEntity<String> getOrderStatus(@PathVariable String id){
+        return orderService.getOrderStatus(id);
+    }
+
+    @PutMapping("/updateOrder")
+    public ResponseEntity<String> updateOrder(@RequestBody OrderCreateDto orderDto){
+        return orderService.updateOrder(orderDto);
     }
 }

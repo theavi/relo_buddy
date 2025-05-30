@@ -40,6 +40,7 @@
     </scm>
     <properties>
         <java.version>17</java.version>
+        <spring-cloud.version>2022.0.4</spring-cloud.version>
     </properties>
     <!-- Define versions centrally -->
     <dependencyManagement>
@@ -83,6 +84,16 @@
             <version>1.18.38</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+        </dependency>
+       <!-- <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-netflix-eureka-server</artifactId>
+            <version>4.1.0</version>
+            <scope>compile</scope>
+        </dependency>-->
     </dependencies>
     <build>
         <plugins>

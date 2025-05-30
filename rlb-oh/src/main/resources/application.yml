@@ -1,0 +1,30 @@
+spring:
+  #Kafka Consumer
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: rlbGroup
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.value.default.type: com.rlb.oc.event.OrderCreateEvent
+        spring.json.trusted.packages: "*"
+    #Kafka Producer
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+  #MongoDB
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: rlb
+
+server:
+  port: 8082
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka

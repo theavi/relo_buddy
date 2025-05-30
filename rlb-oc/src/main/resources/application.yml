@@ -1,18 +1,14 @@
 server:
-  port: 6061
+  port: 8081
 spring:
   application:
     name: rlb-oc
 
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
-  instance:
-    instance-id: ${spring.application.name}:${random.value}
+
+
   #Kafka Consumer
   kafka:
-    bootstrap-servers: kafka:9092
+    bootstrap-servers: localhost:9092
     consumer:
       group-id: rlbGroup
       auto-offset-reset: earliest
@@ -22,9 +18,21 @@ eureka:
     #Kafka Producer
     producer:
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    #Kafka Topics
+    topics:
+      orderCreated: order.created.v1
+      orderUpdated: order.updated.v1
 #MongoDB
   data:
     mongodb:
-      host: mongodb
+      host: localhost
       port: 27017
       database: rlb
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    instance-id: ${spring.application.name}:${random.value}
+

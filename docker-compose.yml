@@ -6,6 +6,9 @@ services:
     image: mongo:6.0
     ports:
       - "27017:27017"
+    environment:
+      SPRING_APPLICATION_NAME: mongodb
+      SPRING_PROFILES_ACTIVE: prod
     healthcheck:
       #test: ["CMD-SHELL", "mongosh --eval 'db.adminCommand(\"ping\").ok' --quiet | grep 1"]
       test: ["CMD-SHELL", "mongosh --eval 'db.runCommand({ ping: 1 })' --quiet"]
