@@ -12,6 +12,8 @@ eureka:
     instance-id: ${spring.application.name}:${random.value}
   #Kafka Consumer
   kafka:
+    admin:
+      fail-fast: false
     bootstrap-servers: kafka:9092
     consumer:
       group-id: rlbGroup
