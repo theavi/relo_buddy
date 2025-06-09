@@ -1,6 +1,5 @@
 package com.rlb.oh.exception;
 
-import com.rlb.oc.exception.ErrorResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

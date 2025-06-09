@@ -13,6 +13,9 @@ spring:
     #Kafka Producer
     producer:
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    #kafka topics
+    topics:
+      orderAssignmentTopic: order.assigned.v1
 
   #MongoDB
   data:
