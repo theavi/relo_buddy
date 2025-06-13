@@ -11,6 +11,7 @@ public class OrderUpdatePublisher {
 
     KafkaTemplate<String, OrderUpdateEvent> kafkaTemplate;
 
+    @Autowired
     public OrderUpdatePublisher(KafkaTemplate<String, OrderUpdateEvent> kafkaTemplate){
         this.kafkaTemplate=kafkaTemplate;
     }

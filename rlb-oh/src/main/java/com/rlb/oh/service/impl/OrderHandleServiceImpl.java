@@ -2,10 +2,8 @@ package com.rlb.oh.service.impl;
 
 import com.core.dto.TeamDto;
 import com.rlb.oc.event.OrderCreateEvent;
-import com.rlb.oc.mapper.OrderMapper;
 import com.rlb.oh.client.CoreFeignClient;
-import com.rlb.oh.event.OrderAssignedToTeamEvent;
-import com.rlb.oh.kafka.producer.OrderAssignmmentPublisher;
+import com.rlb.oh.kafka.producer.OrderAssignmentPublisher;
 import com.rlb.oh.mapper.OrderEventMapper;
 import com.rlb.oh.service.OrderHandleService;
 import org.slf4j.Logger;
@@ -24,7 +22,7 @@ public class OrderHandleServiceImpl implements OrderHandleService {
     public CoreFeignClient coreFeignClient;
 
     @Autowired
-    public OrderAssignmmentPublisher orderAssignmmentPublisher;
+    public OrderAssignmentPublisher orderAssignmmentPublisher;
 
     @Override
     public ResponseEntity<String> handleOrder(OrderCreateEvent event) {

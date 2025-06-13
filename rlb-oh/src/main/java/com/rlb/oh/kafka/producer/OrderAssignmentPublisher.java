@@ -8,14 +8,15 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
-public class OrderAssignmmentPublisher {
+public class OrderAssignmentPublisher {
 
     private KafkaTemplate<String, OrderAssignedToTeamEvent> kafkaTemplate;
 
-    @Value("${orderAssignmentTopic}")
+    @Value("${spring.kafka.topics.orderAssignmentTopic}")
     private String orderAssignedToTeamTopicName;
 
-    public OrderAssignmmentPublisher(KafkaTemplate kafkaTemplate){
+    @Autowired
+    public OrderAssignmentPublisher(KafkaTemplate<String, OrderAssignedToTeamEvent> kafkaTemplate){
         this.kafkaTemplate = kafkaTemplate;
     }
 

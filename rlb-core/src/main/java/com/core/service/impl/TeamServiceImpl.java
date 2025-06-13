@@ -6,9 +6,11 @@ import com.core.entity.Team;
 import com.core.mapper.TeamMapper;
 import com.core.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class TeamServiceImpl implements TeamService {
 
     @Autowired
