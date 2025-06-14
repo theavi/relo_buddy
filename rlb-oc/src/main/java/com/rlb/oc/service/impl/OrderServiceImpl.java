@@ -1,9 +1,9 @@
 package com.rlb.oc.service.impl;
 
+import com.rlb.exception.RecordNotFound;
 import com.rlb.oc.OrderStatus;
 import com.rlb.oc.event.OrderCreateEvent;
 import com.rlb.oc.dto.OrderCreateDto;
-import com.rlb.oc.exception.RecordNotFound;
 import com.rlb.oc.kafka.producer.OrderPublisher;
 import com.rlb.oc.kafka.producer.OrderUpdatePublisher;
 import com.rlb.oc.service.OrderService;
@@ -60,6 +60,7 @@ public class OrderServiceImpl implements OrderService {
         if(orderFromDb.isEmpty()){
             logger.error("OrderServiceImpl - getOrderStatus - Order not found for orderId : {}", orderDto.getId());
             throw new RecordNotFound("Record not found");
+
         }
         orderFromDb.get().setDeliveryAddress(orderDto.getDeliveryAddress());
         Order updatedOrder = orderRepository.save(orderFromDb.get());

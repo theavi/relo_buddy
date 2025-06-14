@@ -1,8 +1,8 @@
-package com.rlb.oh.exception;
+package com.rlb.exception;
 
 public class RecordNotFound extends RuntimeException{
 
-    public RecordNotFound(String msg){
+    public RecordNotFound(String msg) {
         super(msg);
     }
 }
