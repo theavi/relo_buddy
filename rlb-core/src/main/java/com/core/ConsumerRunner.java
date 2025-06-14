@@ -11,9 +11,9 @@ public class ConsumerRunner implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
-        RestTemplate restTemplate=new RestTemplate();
+        /*RestTemplate restTemplate=new RestTemplate();
       ResponseEntity<String> response= restTemplate.getForEntity("http://localhost:9092/hello",String.class);
-        //System.out.println(String.format("RLB Common Response : {} and HTTP Status is : {}",response.getBody(),response.getStatusCode()));
-        System.out.println("Response :  "+response.getBody());
+        System.out.println(String.format("RLB Common Response : {} and HTTP Status is : {}",response.getBody(),response.getStatusCode()));
+        System.out.println("Response :  "+response.getBody());*/
     }
 }
