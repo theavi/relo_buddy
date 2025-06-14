@@ -11,4 +11,6 @@ import lombok.NoArgsConstructor;
 public class User {
     @Id
     private Integer id;
+    private String name;
+    private String phoneNo;
 }

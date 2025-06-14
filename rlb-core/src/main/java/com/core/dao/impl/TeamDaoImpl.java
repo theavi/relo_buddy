@@ -1,7 +1,8 @@
 package com.core.dao.impl;
 
 import com.core.dao.TeamDao;
-import com.core.entity.Team;
+import com.core.model.Team;
+import com.rlb.exception.RecordNotFound;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -45,18 +46,32 @@ public class TeamDaoImpl implements TeamDao {
                     .setParameter("pincode", pincode)
                     .setMaxResults(1)
                     .uniqueResult();
-      /*  if(null == team){
-            throw new RuntimeException("");
+        if(null == team){
+            throw new RecordNotFound("Team not found");
         }
         team.setAllocated(true);
-        //session.update(team);
         tx.commit();
         session.close();
         return team;
+    }
+
+    @Override
+    public Team getTeamByPincode(int pincode) {
+        Session session = sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+
+        Team team = session.createQuery(
+                "FROM Team where pincode: pincode", Team.class)
+                .setParameter("pincode", pincode)
+                .setMaxResults(1)
+                .uniqueResult();
+
+        if(null == team){
+            throw new RecordNotFound("Team not found");
+        }
         tx.commit();
         session.close();
-        return null;*/
-        return null;
+        return team;
     }
 
 

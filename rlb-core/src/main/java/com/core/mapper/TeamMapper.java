@@ -1,7 +1,7 @@
 package com.core.mapper;
 
 import com.core.dto.TeamDto;
-import com.core.entity.Team;
+import com.core.model.Team;
 
 public class TeamMapper {
 

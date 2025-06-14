@@ -1,9 +1,7 @@
-package com.core.entity;
+package com.core.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,12 +17,14 @@ public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private List<Worker> workers;//user
     private Integer size;
     private Integer pincode;
     private boolean isAllocated;
     private String orderId;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "team_id")
+    private List<User> workers;
     public boolean getAllocated() {
         return isAllocated;
     }

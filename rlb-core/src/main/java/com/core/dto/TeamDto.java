@@ -1,6 +1,7 @@
 package com.core.dto;
 
-import com.core.entity.Worker;
+
+import com.core.model.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,7 +14,7 @@ import java.util.List;
 public class TeamDto {
 
     private Integer id;
-    private List<Worker> workers;
+    private List<User> workers;
     private Integer size;
     private Integer pincode;
     private boolean isAllocated;
