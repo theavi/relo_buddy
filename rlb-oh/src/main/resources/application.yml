@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: rlb-oh
   #Kafka Consumer
   kafka:
     bootstrap-servers: localhost:9092
@@ -13,6 +15,9 @@ spring:
     #Kafka Producer
     producer:
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    #kafka topics
+    topics:
+      orderAssignmentTopic: order.assigned.v1
 
   #MongoDB
   data:
@@ -28,3 +33,5 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
+  instance:
+    instance-id: ${spring.application.name}:${random.value}

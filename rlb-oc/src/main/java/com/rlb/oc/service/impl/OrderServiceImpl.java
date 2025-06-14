@@ -1,9 +1,9 @@
 package com.rlb.oc.service.impl;
 
+import com.rlb.exception.RecordNotFound;
 import com.rlb.oc.OrderStatus;
 import com.rlb.oc.event.OrderCreateEvent;
 import com.rlb.oc.dto.OrderCreateDto;
-import com.rlb.oc.exception.RecordNotFound;
 import com.rlb.oc.kafka.producer.OrderPublisher;
 import com.rlb.oc.kafka.producer.OrderUpdatePublisher;
 import com.rlb.oc.service.OrderService;
@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
 
 import java.util.Optional;
 import java.util.UUID;
@@ -58,7 +59,8 @@ public class OrderServiceImpl implements OrderService {
         Optional<Order> orderFromDb = orderRepository.findById(orderDto.getId());
         if(orderFromDb.isEmpty()){
             logger.error("OrderServiceImpl - getOrderStatus - Order not found for orderId : {}", orderDto.getId());
-            throw new RecordNotFound("Order not found");
+            throw new RecordNotFound("Record not found");
+
         }
         orderFromDb.get().setDeliveryAddress(orderDto.getDeliveryAddress());
         Order updatedOrder = orderRepository.save(orderFromDb.get());

@@ -4,8 +4,6 @@ spring:
   application:
     name: rlb-oc
 
-
-
   #Kafka Consumer
   kafka:
     bootstrap-servers: localhost:9092

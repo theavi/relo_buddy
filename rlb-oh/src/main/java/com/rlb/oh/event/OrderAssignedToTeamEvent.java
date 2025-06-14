@@ -1,18 +1,21 @@
-package com.rlb.oc.event;
+package com.rlb.oh.event;
 
 import com.rlb.oc.OrderStatus;
 import com.rlb.oc.dto.ProductDto;
 import com.rlb.oc.model.Location;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
-public class OrderCreateEvent {
+public class OrderAssignedToTeamEvent {
+
     private String id;
     private Integer custId;
     private Date orderDate;
@@ -22,4 +25,3 @@ public class OrderCreateEvent {
     private List<ProductDto> productList = new ArrayList<>();
     private OrderStatus status;
 }
-
