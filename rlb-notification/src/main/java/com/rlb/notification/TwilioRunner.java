@@ -27,7 +27,7 @@ public class TwilioRunner implements CommandLineRunner {
         String date = "May 5, 2025";
         String time = "2:00 PM";
         String msg = MessageFormat.format(order_place_msg, date, time);
-        twilioService.sendWhatsAppMessage("+917507571993", order_place_msg);
+        twilioService.sendWhatsAppMessage("+917743908937", order_place_msg);
        // twilioService.sendWhatsAppMessage("+919063237318", msg);
     }
 }
