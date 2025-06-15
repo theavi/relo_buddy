@@ -22,14 +22,14 @@ public class OrderHandleServiceImpl implements OrderHandleService {
     public CoreFeignClient coreFeignClient;
 
     @Autowired
-    public OrderAssignmentPublisher orderAssignmmentPublisher;
+    public OrderAssignmentPublisher orderAssignmentPublisher;
 
     @Override
     public ResponseEntity<String> handleOrder(OrderCreateEvent event) {
         TeamDto team = coreFeignClient.getTeam(event.getPincode());
         team.setOrderId(event.getId());
         //event.setStatus(OrderStatus.ASSIGNED);
-        orderAssignmmentPublisher.publish(OrderEventMapper.toOrderAssignedToTeamEvent(event));
+        orderAssignmentPublisher.publish(OrderEventMapper.toOrderAssignedToTeamEvent(event));
         return new ResponseEntity<>("Order assigned to a team", HttpStatus.OK);
     }
 }
