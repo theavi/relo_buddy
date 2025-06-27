@@ -1,6 +1,5 @@
     package com.rlb.api.model;
 
-    import com.core.model.User;
     import com.fasterxml.jackson.annotation.JsonIgnore;
     import jakarta.persistence.*;
     import lombok.Data;
