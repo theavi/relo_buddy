@@ -1,6 +1,7 @@
 package com.rlb.api.security;
 
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -11,6 +12,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -18,6 +20,11 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 public class SecurityConfig {
 
+    @Autowired
+    private JWTAuthenticationEntryPont entryPont;
+
+    @Autowired
+    private  JwtAuthenticationFilter jwtAuthenticationFilter;
     @Bean
     private PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -31,6 +38,10 @@ public class SecurityConfig {
                     authorise.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll();
                     authorise.anyRequest().authenticated();
                 }).httpBasic(Customizer.withDefaults());
+
+        http.exceptionHandling(exc -> exc.authenticationEntryPoint(entryPont));
+
+        http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 
