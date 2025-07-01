@@ -15,23 +15,27 @@ import java.util.Date;
 public class JWTTokenProvider {
 
     private long expireAt = 3600000;
-    private String jwtSecret="dqk1OsLhkEial8as4CedfUlRhtXHGq9C";
+    private String jwtSecret = "dqk1OsLhkEial8as4CedfUlRhtXHGq9C";
 
     public String generateToken(Authentication authentication) {
         String username = authentication.getName();
-        Date createDate=new Date();
-        Date expireDate=new Date(createDate.getTime()+expireAt);
+        Date createDate = new Date();
+        Date expireDate = new Date(createDate.getTime() + expireAt);
 
         return Jwts.builder().subject(username).issuedAt(createDate).expiration(expireDate).signWith(key(), SignatureAlgorithm.HS256).compact();
     }
 
 
-    private Key key(){
+    private Key key() {
         return Keys.hmacShaKeyFor(Decoders.BASE64.decode(jwtSecret));
     }
 
-    public boolean validateToken(String token){
+    public boolean validateToken(String token) {
         Jwts.parser().verifyWith((SecretKey) key()).build().parse(token);
         return true;
+    }
+
+    public String getUserName(String token) {
+        return Jwts.parser().verifyWith((SecretKey) key()).build().parseSignedClaims(token).getPayload().getSubject();
     }
 }
