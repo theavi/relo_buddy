@@ -1,7 +1,6 @@
 package com.rlb.oc.service.impl;
 
-import com.rlb.exception.RecordNotFound;
-import com.rlb.oc.OrderStatus;
+import com.rlb.common.exception.RecordNotFound;
 import com.rlb.oc.event.OrderCreateEvent;
 import com.rlb.oc.dto.OrderCreateDto;
 import com.rlb.oc.kafka.producer.OrderPublisher;
@@ -19,7 +18,6 @@ import org.springframework.stereotype.Service;
 
 
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class OrderServiceImpl implements OrderService {

@@ -1,4 +1,4 @@
-package com.rlb.dto;
+package com.rlb.common.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

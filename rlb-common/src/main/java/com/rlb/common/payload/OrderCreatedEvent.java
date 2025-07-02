@@ -1,8 +1,8 @@
-package com.rlb.payload;
+package com.rlb.common.payload;
 
-import com.rlb.dto.ProductDto;
-import com.rlb.enums.OrderStatus;
-import com.rlb.model.Location;
+import com.rlb.common.dto.ProductDto;
+import com.rlb.common.enums.OrderStatus;
+import com.rlb.common.model.Location;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

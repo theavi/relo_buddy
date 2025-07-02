@@ -1,4 +1,4 @@
-package com.rlb.exception;
+package com.rlb.common.exception;
 
 public class RecordNotFound extends RuntimeException{
 

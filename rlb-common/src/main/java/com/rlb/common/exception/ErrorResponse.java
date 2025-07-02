@@ -1,4 +1,4 @@
-package com.rlb.exception;
+package com.rlb.common.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

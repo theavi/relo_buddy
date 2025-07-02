@@ -1,4 +1,4 @@
-package com.rlb.controller;
+package com.rlb.common.controller;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;

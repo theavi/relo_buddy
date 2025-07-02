@@ -75,12 +75,6 @@
             <version>0.12.3</version>
             <scope>runtime</scope>
         </dependency>
-
-        <dependency>
-            <groupId>com.rlb</groupId>
-            <artifactId>rlb-core</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
         <dependency>
             <groupId>com.rlb</groupId>
             <artifactId>rlb-common</artifactId>

@@ -1,4 +1,4 @@
-package com.rlb.enums;
+package com.rlb.common.enums;
 
 public enum OrderStatus {
     PLACED("Order Placed"),

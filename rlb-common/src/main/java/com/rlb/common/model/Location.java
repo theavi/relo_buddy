@@ -1,4 +1,4 @@
-package com.rlb.model;
+package com.rlb.common.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -2,7 +2,7 @@ package com.core.dao.impl;
 
 import com.core.dao.TeamDao;
 import com.core.model.Team;
-import com.rlb.exception.RecordNotFound;
+import com.rlb.common.exception.RecordNotFound;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
