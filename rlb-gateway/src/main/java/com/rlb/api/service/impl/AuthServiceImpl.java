@@ -23,6 +23,7 @@ public class AuthServiceImpl implements AuthService {
     public String login(LoginDto dto) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(dto.getUsername(), dto.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
+        //access restricted image
         return jwtTokenProvider.generateToken(authentication);
     }
 }
