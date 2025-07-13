@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class RLBController {
 
     @GetMapping("/admin")
-    @PreAuthorize("hasRole('Admin')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<String> admin(){
         return  new ResponseEntity<>("Admin Resource access!!", HttpStatus.OK);
     }
 
     @GetMapping("/manager")
-    @PreAuthorize("hasRole('Manager')")
+    @PreAuthorize("hasRole('MANAGER')")
     public ResponseEntity<String> manager(){
         return  new ResponseEntity<>("Manager Resource access!!", HttpStatus.OK);
     }

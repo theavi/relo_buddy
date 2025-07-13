@@ -9,21 +9,26 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Table(name = "users") // match DB
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class User {
     @Id
     private Integer id;
+
     private String name;
+
+    @Column(name = "phone_no")
     private String phoneNo;
+
     private String password;
 
-    @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
+            joinColumns = @JoinColumn(name = "user_id"),       // FK in user_roles
+            inverseJoinColumns = @JoinColumn(name = "role_id") // FK in user_roles
     )
     private Set<Role> roles = new HashSet<>();
 }

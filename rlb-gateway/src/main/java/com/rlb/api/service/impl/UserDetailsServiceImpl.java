@@ -23,6 +23,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user=userRepository.findByName(username).orElseThrow(()->new RecordNotFound("User not exist"));
 
+        System.out.println("User: " + user.getName());
+        System.out.println("Roles count: " + user.getRoles().size());
+        user.getRoles().forEach(role -> System.out.println("Role: " + role.getName()));
+
         Set<GrantedAuthority> authority=user.getRoles().stream().map((role)->new SimpleGrantedAuthority(role.getName())).collect(Collectors.toSet());
 
 
