@@ -1,0 +1,46 @@
+apiVersion: apps/v1 #Specifies the version of the Kubernetes API you're using.
+kind: Deployment
+metadata:   #Deployment
+  name: eureka-server  #The name of the deployment
+  labels:
+    app: eureka-server #Used to logically group this deployment with other resources (like Services)
+spec:  # Deployment Configuration
+  replicas: 1
+  selector:
+    matchLabels:  #Tells Kubernetes to manage pods with this label.
+      app: eureka-server
+  template:         #POD Configuration
+    metadata:
+      labels:
+        app: eureka-server  #This defines the labels for the pods created by this deployment
+    spec:   #spec.containers: Defines the container.
+      containers:
+        - name: eureka-server
+          image: avishtech/eureka-server:latest
+          ports:
+            - containerPort: 8761
+          env:  #Environment Variables (Optional)
+            - name: EUREKA_CLIENT_REGISTER_WITH_EUREKA
+              value: "false"
+            - name: EUREKA_CLIENT_FETCH_REGISTRY
+              value: "false"
+          readinessProbe: #Readiness Probe (Optional but Recommended)
+            httpGet:
+              path: /actuator/health
+              port: 8761
+            initialDelaySeconds: 10
+            periodSeconds: 10
+---
+#This section exposes your Eureka Server inside the Kubernetes cluster using a ClusterIP service
+apiVersion: v1
+kind: Service   # A Service groups pods and exposes them on a stable endpoint (eureka-service)
+metadata:
+  name: eureka-service
+spec:
+  selector:
+    app: eureka-server   # Matches pods with label app: eureka-server
+  ports:
+    - protocol: TCP
+      port: 8761   # What the service exposes
+      targetPort: 8761 # The port on the container to route to
+  type: ClusterIP  # exposes the service only inside the cluster
