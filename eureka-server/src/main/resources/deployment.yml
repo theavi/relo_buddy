@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: eureka-server
-          image: aniketsp/eureka-server-0.0.1 # <-- Replace with your actual image
+          image: avishtech/eureka-server-0.0.1 # <-- Replace with your actual image
           ports:
             - containerPort: 8761
           env:
@@ -29,4 +29,3 @@ spec:
             requests:
               memory: "256Mi"
               cpu: "250m"
-
