@@ -18,14 +18,14 @@ public class KafkaTopicConfig {
     @Bean
     NewTopic userCreatedTopic(){
         String topicName = env.getProperty("spring.kafka.topics.orderCreated");
-        Objects.requireNonNull(topicName, "Kafka topic 'orderCreated' must be set in application.yml");
+        Objects.requireNonNull(topicName, "Kafka topic 'orderCreated' must be set in application-prod.yml");
         return TopicBuilder.name(topicName).partitions(3).build();
     }
 
     @Bean
     NewTopic orderUpdatedTopic() {
         String topicName = env.getProperty("spring.kafka.topics.orderUpdated");
-        Objects.requireNonNull(topicName, "Kafka topic 'orderUpdated' must be set in application.yml");
+        Objects.requireNonNull(topicName, "Kafka topic 'orderUpdated' must be set in application-prod.yml");
         return TopicBuilder.name(topicName).partitions(3).build();
     }
 }

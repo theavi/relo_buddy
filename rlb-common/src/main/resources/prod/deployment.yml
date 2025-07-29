@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rlb-common
+  labels:
+    app: rlb-common
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: rlb-common
+  template: #pod configuration
+    metadata:
+      labels:
+        app: rlb-common
+    spec:
+      containers:
+        - name: rlb-common
+          image: avishtech/rlb-common-0.0.1 # <-- Replace with your actual image
+          ports:
+            - containerPort: 8083
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "prod"
+            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+              value: http://eureka-service:8761/eureka
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rlb-common
+spec:
+  selector:
+    app: rlb-common
+  ports:
+    - protocol: TCP
+      port: 8083
+      targetPort: 8083
+  type: ClusterIP
