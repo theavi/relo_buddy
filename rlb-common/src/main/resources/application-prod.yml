@@ -8,6 +8,6 @@ spring:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://eureka-service:8761/eureka
+      defaultZone: http://eureka-service:8761/eureka    # Access eureka-server through service name in K8S Cluster
   instance:
     instance-id: ${spring.application.name}:${random.value}
