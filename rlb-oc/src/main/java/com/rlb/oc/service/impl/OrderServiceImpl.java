@@ -12,6 +12,7 @@ import com.rlb.oc.repository.OrderRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -31,6 +32,7 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderUpdatePublisher orderUpdatePublisher;
 
+
     private static final Logger logger = LoggerFactory.getLogger(OrderService.class);
 
     @Override
@@ -41,15 +43,18 @@ public class OrderServiceImpl implements OrderService {
         return "Order Created Successfully";
     }
 
+    @Cacheable(value = "OrderStatus", key = "#id")
     @Override
-    public ResponseEntity<String> getOrderStatus(String id) {
+    public String getOrderStatus(String id) {
+
+            logger.info("OrderServiceImpl - getOrderStatus - Cache missed, calling from db");
             Optional<Order> order = orderRepository.findById(id);
             if(order.isEmpty()){
                 logger.error("OrderServiceImpl - getOrderStatus - Order not found for orderId : {}", id);
                 throw new RecordNotFound("Order not found");
             }
             String status = order.get().getStatus().toString();
-            return new ResponseEntity<>(status, HttpStatus.OK);
+            return status;
     }
 
     @Override

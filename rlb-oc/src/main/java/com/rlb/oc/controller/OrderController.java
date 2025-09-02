@@ -6,6 +6,7 @@ import com.rlb.oc.service.OrderService;
 import com.rlb.oc.repository.RoleRepository;
 import com.rlb.oc.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,9 +33,11 @@ public class OrderController {
         return new ResponseEntity<String>("result", HttpStatus.CREATED);
     }
 
+
     @GetMapping("/getOrderStatus/{id}")
     public ResponseEntity<String> getOrderStatus(@PathVariable String id){
-        return orderService.getOrderStatus(id);
+        String status =  orderService.getOrderStatus(id);
+        return new ResponseEntity<>(status, HttpStatus.OK);
     }
 
     @PutMapping("/updateOrder")

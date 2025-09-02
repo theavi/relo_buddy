@@ -27,6 +27,14 @@ spring:
       port: 27017
       database: rlb
 
+#Redis
+  cache:
+    type: redis
+
+  redis:
+    host: localhost
+    port: 6379
+
 eureka:
   client:
     serviceUrl:
