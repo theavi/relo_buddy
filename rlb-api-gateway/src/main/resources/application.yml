@@ -1,0 +1,26 @@
+server:
+  port:8080
+
+spring:
+  application:
+    name: rlb-api-gateway
+
+  cloud:
+    gateway:
+      routes:
+        - id: rlb-common
+          uri: lb://rlb-common
+          predicates:
+            - Path=/common/**
+
+        - id: rlb-core
+          uri: lb://rlb-core
+          predicates:
+            - Path=/core/**, /team/**
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    instance-id: ${spring.application.name}:${random.value}

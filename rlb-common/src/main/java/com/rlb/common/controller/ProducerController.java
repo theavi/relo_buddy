@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/hello")
+@RequestMapping("/common")
 public class ProducerController {
 
     @Value("${server.port}")
     private int port;
 
-    @GetMapping
+    @GetMapping("hello")
     public ResponseEntity<String> hello() {
         System.out.println("HTTP GET Request for Producer started : ");
         return new ResponseEntity<>(String.format("Hello from !!"+port), HttpStatus.OK);

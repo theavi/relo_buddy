@@ -3,15 +3,26 @@ package com.core.controller;
 import com.core.model.Role;
 import com.core.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/role")
+@RequestMapping("/core/role")
 public class RoleController {
 
     @Autowired
     private RoleService roleService;
+
+    @Value("${server.port}")
+    private int port;
+
+    @GetMapping("/hello")
+    public ResponseEntity<String> hello() {
+        System.out.println("HTTP GET Request for Producer started : ");
+        return new ResponseEntity<>(String.format("Hello from !!"+port), HttpStatus.OK);
+    }
 
     @PostMapping
     public ResponseEntity<Role> create(@RequestBody Role role) {

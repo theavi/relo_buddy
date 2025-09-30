@@ -33,19 +33,19 @@ public class ConsumerRunner implements ApplicationRunner {
         System.out.println(String.format("RLB Common Response : {} and HTTP Status is : {}",response.getBody(),response.getStatusCode()));
         System.out.println("Response :  " + response.getBody());*/
 
-        List<ServiceInstance> instances = discoveryClient.getInstances("RLB-COMMON");
+        /*List<ServiceInstance> instances = discoveryClient.getInstances("RLB-COMMON");
         ResponseEntity<String> discoveryClientResponse = restTemplate.getForEntity(instances.get(0).getUri() + "/hello", String.class);
-        System.out.println("Response from Discovery Client:  " + discoveryClientResponse.getBody());
+        System.out.println("Response from Discovery Client:  " + discoveryClientResponse.getBody());*/
 
         //Ribbon
-        for (int count = 0; count < 10; count++) {
+        /*for (int count = 0; count < 10; count++) {
             ServiceInstance instance = ribbonClient.choose("RLB-COMMON");
             ResponseEntity<String> loadbalancerclientresponse = restTemplate.getForEntity(instance.getUri() + "/hello", String.class);
             System.out.println("Response from Load balancer Client:  " + loadbalancerclientresponse.getBody());
         }
 
         ResponseEntity<String> feignResponse = feignClient.hello();
-        System.out.println(feignResponse.getBody());
+        System.out.println(feignResponse.getBody());*/
 
     }
 }
