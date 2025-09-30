@@ -23,6 +23,7 @@
     </developers>
     <modules>
         <module>rlb-config</module>
+        <module>rlb-config-server</module>
         <module>rlb-core</module>
         <module>rlb-api-gateway</module>
         <module>rlb-oc</module>

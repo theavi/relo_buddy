@@ -1,0 +1,13 @@
+server:
+  port: 8085
+
+spring:
+  application:
+    name: rlb-config-server
+
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/Aniket-Sable/config-server.git
+          clone-on-start: true
