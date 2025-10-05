@@ -26,6 +26,7 @@
         <module>rlb-config-server</module>
         <module>rlb-core</module>
         <module>rlb-api-gateway</module>
+        <module>rlb-auth</module>
         <module>rlb-oc</module>
         <module>rlb-oh</module>
         <module>rlb-common</module>
