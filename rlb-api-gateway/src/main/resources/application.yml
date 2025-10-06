@@ -1,5 +1,5 @@
 server:
-  port:8080
+  port: 8081
 
 spring:
   application:
@@ -12,11 +12,20 @@ spring:
           uri: lb://rlb-common
           predicates:
             - Path=/common/**
+          filters:
+            - AuthenticationFilter
 
         - id: rlb-core
           uri: lb://rlb-core
           predicates:
             - Path=/core/**, /team/**
+          filters:
+            - AuthenticationFilter
+
+        - id: rlb-auth
+          uri: lb://rlb-auth
+          predicates:
+            - Path=/auth/**
 
 eureka:
   client:
