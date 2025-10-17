@@ -3,10 +3,12 @@ package com.rlb.common.controller;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/common")
 public class ProducerController {
@@ -19,4 +21,10 @@ public class ProducerController {
         System.out.println("HTTP GET Request for Producer started : ");
         return new ResponseEntity<>(String.format("Hello from !!"+port), HttpStatus.OK);
     }
+
+    /*@GetMapping("hello")
+    public String hello() {
+        System.out.println("HTTP GET Request for Producer started : ");
+        return new String("Hello");
+    }*/
 }
