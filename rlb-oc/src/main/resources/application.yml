@@ -34,3 +34,8 @@ eureka:
   instance:
     instance-id: ${spring.application.name}:${random.value}
 
+rlb:
+  outbox:
+    maxAttempts: 50
+    pollDelayMs: 2000
+    baseBackoffSeconds: 5
