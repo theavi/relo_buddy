@@ -7,24 +7,24 @@ spring:
     consumer:
       group-id: rlbGroup
       auto-offset-reset: earliest
+      enable-auto-commit: false
+      max-attempts: 3
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
         spring.json.value.default.type: com.rlb.oc.event.OrderCreateEvent
         spring.json.trusted.packages: "*"
-    #Kafka Producer
     producer:
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-    #kafka topics
     topics:
-      orderAssignmentTopic: order.assigned.v1
+      orderCreated: order.created.v1
+      dlq: order.created.v1.DLQ
 
-  #MongoDB
+
   data:
     mongodb:
-      host: localhost
-      port: 27017
-      database: rlb
+      uri: mongodb://localhost:27017/orderservice
+      auto-index-creation: true  
 
 server:
   port: 8082
