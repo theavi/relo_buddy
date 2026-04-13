@@ -11,14 +11,14 @@ spring:
         - id: rlb-common
           uri: lb://rlb-common
           predicates:
-            - Path=/common/**
+            - Path=/api/v1/common/**
           filters:
             - AuthenticationFilter
 
         - id: rlb-core
           uri: lb://rlb-core
           predicates:
-            - Path=/core/**, /team/**
+            - Path=/api/v1/core/**, /team/**
           filters:
             - AuthenticationFilter
 
@@ -26,6 +26,20 @@ spring:
           uri: lb://rlb-auth
           predicates:
             - Path=/auth/**
+
+        - id: rlb-oc
+          uri: lb://rlb-oc
+          predicates:
+            - Path=/api/v1/order-capture/**
+          filters:
+            - AuthenticationFilter
+
+        - id: rlb-oh
+          uri: lb://rlb-oh
+          predicates:
+            - Path=/api/v1/order-handle/**
+          filters:
+            - AuthenticationFilter
 
 eureka:
   client:

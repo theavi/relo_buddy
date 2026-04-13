@@ -1,3 +1,6 @@
+package com.rlb.oh.dlq.event;
+
+import java.time.Instant;
 
 public class DlqEventContext {
 

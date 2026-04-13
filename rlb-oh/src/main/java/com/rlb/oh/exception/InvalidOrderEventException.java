@@ -1,3 +1,7 @@
+package com.rlb.oh.exception;
+
+import lombok.Getter;
+
 @Getter
 public class InvalidOrderEventException extends RuntimeException {
 

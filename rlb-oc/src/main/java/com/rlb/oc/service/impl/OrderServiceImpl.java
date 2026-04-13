@@ -117,7 +117,11 @@ public class OrderServiceImpl implements OrderService {
         }
     }
 
-    @SuppressWarnings({"null", "ConstantConditions"})
+    @Override
+    public String deleteOrder(String id) {
+        return "";
+    }
+
     private Order saveNewOrder(OrderCreateDto dto) {
         Order entity = requireNonNull(OrderMapper.toEntity(dto), "OrderMapper.toEntity returned null");
         Order savedOrder;

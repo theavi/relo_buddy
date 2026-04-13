@@ -1,3 +1,18 @@
+package com.rlb.oh.dlq.service;
+
+import com.rlb.oh.dlq.entity.DlqEvent;
+import com.rlb.oh.dlq.entity.DlqEventStatus;
+import com.rlb.oh.dlq.repository.DlqEventRepository;
+import com.rlb.oh.idempotency.service.CreateOrderEventProcessor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
 @Service
 public class DlqReplayService {
 
@@ -5,22 +20,22 @@ public class DlqReplayService {
 
     private final DlqEventRepository dlqEventRepository;
     private final KafkaTemplate<String, Object> kafkaTemplate;
-    private final OrderEventProcessor orderEventProcessor;
+    private final CreateOrderEventProcessor createOrderEventProcessor;
 
     @Value("${spring.kafka.topics.orderCreated:order.created.v1}")
     private String orderCreatedTopic;
 
     public DlqReplayService(DlqEventRepository dlqEventRepository,
                              KafkaTemplate<String, Object> kafkaTemplate,
-                             OrderEventProcessor orderEventProcessor) {
+                            CreateOrderEventProcessor createOrderEventProcessor) {
         this.dlqEventRepository  = dlqEventRepository;
         this.kafkaTemplate       = kafkaTemplate;
-        this.orderEventProcessor = orderEventProcessor;
+        this.createOrderEventProcessor = createOrderEventProcessor;
     }
 
     @Transactional
     public void replay(Long dlqEventId, String remarks) {
-        DlqEvent dlqEvent = dlqEventRepository.findById(dlqEventId)
+        DlqEvent dlqEvent = dlqEventRepository.findById(String.valueOf(dlqEventId))
                 .orElseThrow(() -> new IllegalArgumentException(
                         "DLQ event not found. id=" + dlqEventId));
 
@@ -44,7 +59,7 @@ public class DlqReplayService {
      */
     @Transactional
     public void discard(Long dlqEventId, String remarks) {
-        DlqEvent dlqEvent = dlqEventRepository.findById(dlqEventId)
+        DlqEvent dlqEvent = dlqEventRepository.findById(String.valueOf(dlqEventId))
                 .orElseThrow(() -> new IllegalArgumentException(
                         "DLQ event not found. id=" + dlqEventId));
 

@@ -9,4 +9,6 @@ public interface OrderService {
     String getOrderStatus(String id);
 
     String updateOrder(OrderCreateDto orderDto);
+
+    String deleteOrder(String id);
 }

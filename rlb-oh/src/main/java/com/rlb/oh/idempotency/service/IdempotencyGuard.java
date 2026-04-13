@@ -1,3 +1,17 @@
+package com.rlb.oh.idempotency.service;
+
+import com.rlb.oh.idempotency.model.ProcessedEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.data.mongodb.core.FindAndModifyOptions;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
+import org.springframework.stereotype.Service;
+
+import java.time.Instant;
+
 @Service
 public class IdempotencyGuard {
 

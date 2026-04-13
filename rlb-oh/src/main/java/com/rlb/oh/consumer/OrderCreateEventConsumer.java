@@ -1,12 +1,26 @@
+package com.rlb.oh.consumer;
+
+import com.rlb.oc.event.OrderCreateEvent;
+import com.rlb.oh.exception.InvalidOrderEventException;
+import com.rlb.oh.idempotency.service.CreateOrderEventProcessor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.support.KafkaHeaders;
+import org.springframework.messaging.handler.annotation.Header;
+import org.springframework.messaging.handler.annotation.Payload;
+import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
+
 @Component
 public class OrderCreateEventConsumer {
 
     private static final Logger logger = LoggerFactory.getLogger(OrderCreateEventConsumer.class);
 
-    private final OrderEventProcessor orderEventProcessor;
+    private final CreateOrderEventProcessor createOrderEventProcessor;
 
-    public OrderCreateEventConsumer(OrderEventProcessor orderEventProcessor) {
-        this.orderEventProcessor = orderEventProcessor;
+    public OrderCreateEventConsumer(CreateOrderEventProcessor createOrderEventProcessor) {
+        this.createOrderEventProcessor = createOrderEventProcessor;
     }
 
     @KafkaListener(
@@ -37,6 +51,6 @@ public class OrderCreateEventConsumer {
         logger.debug("Event received. eventId='{}', topic='{}', partition={}, offset={}",
                 eventId, topic, partition, offset);
 
-        orderEventProcessor.processIdempotently(event, eventId, topic, partition, offset);
+        createOrderEventProcessor.processIdempotently(event, eventId, topic, partition, offset);
     }
 }

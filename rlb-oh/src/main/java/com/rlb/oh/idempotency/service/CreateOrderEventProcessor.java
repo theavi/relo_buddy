@@ -1,19 +1,27 @@
+package com.rlb.oh.idempotency.service;
+
+import com.rlb.oc.event.OrderCreateEvent;
+import com.rlb.oh.service.OrderHandleService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+
 @Service
 public class CreateOrderEventProcessor {
 
-   private static final Logger logger = LoggerFactory.getLogger(OrderEventProcessor.class);
+   private static final Logger logger = LoggerFactory.getLogger(CreateOrderEventProcessor.class);
 
     private final OrderHandleService orderHandleService;
     private final IdempotencyGuard idempotencyGuard;
 
-    public OrderEventProcessor(OrderHandleService orderHandleService,
+    public CreateOrderEventProcessor(OrderHandleService orderHandleService,
                                 IdempotencyGuard idempotencyGuard) {
         this.orderHandleService = orderHandleService;
         this.idempotencyGuard = idempotencyGuard;
     }
 
     public void processIdempotently(OrderCreateEvent event, String eventId,
-                                     String topic, Integer partition, Long offset) {
+                                    String topic, Integer partition, Long offset) {
 
         boolean claimed = idempotencyGuard.tryClaimEvent(eventId, topic, partition, offset);
 

@@ -1,3 +1,14 @@
+package com.rlb.oh.dlq.service;
+
+import com.rlb.oh.dlq.entity.DlqEvent;
+import com.rlb.oh.dlq.entity.DlqEventStatus;
+import com.rlb.oh.dlq.event.DlqEventContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+import com.rlb.oh.dlq.repository.DlqEventRepository;
+import com.rlb.oh.dlq.service.DlqAlertService;
+
 // No @Transactional — MongoDB single-document ops are atomic themselves
 @Service
 public class DlqEventService {
